@@ -274,6 +274,7 @@ p {
   margin-bottom: 1rem;
 }
 
+
 abbr[title] {
   -webkit-text-decoration: underline dotted;
           text-decoration: underline dotted;
@@ -16793,10 +16794,23 @@ textarea.form-control-lg {
 .page-wrapper {
   position: relative;
   background-color: #f6f8fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
+
+footer {
+  margin-top: auto;
+}
+
 
 .body-wrapper {
   position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 80px);
+
 }
 .body-wrapper > .container-fluid, .body-wrapper > .container-sm, .body-wrapper > .container-md, .body-wrapper > .container-lg, .body-wrapper > .container-xl, .body-wrapper > .container-xxl {
   max-width: 1300px;

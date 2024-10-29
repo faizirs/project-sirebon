@@ -19,14 +19,14 @@ class UserSeeder extends Seeder
             'name' => 'Admin Aplikasi',
             'level' => 'admin',
             'email' => 'admin@gmail.com',
-            'password' => bcrypt('12345'),
+            'password' => bcrypt('admin123'),
             'remember_token' => Str::random(60),
         ]);
         User::create([
-            'name' => 'Karyawan Aplikasi',
-            'level' => 'karyawan',
-            'email' => 'karyawan@gmail.com',
-            'password' => bcrypt('karyawan123'),
+            'name' => 'Wajib Retribusi',
+            'level' => 'retribusi',
+            'email' => 'user@gmail.com',
+            'password' => bcrypt('user123'),
             'remember_token' => Str::random(60),
         ]);
     }
