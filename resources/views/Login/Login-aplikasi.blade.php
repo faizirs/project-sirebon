@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="{{ asset('StyleLogin/style.css')}}" rel="stylesheet" >
+    <link href="{{ asset('StyleLogin/Login/style.css')}}" rel="stylesheet" >
     <title>Login Form</title>
   </head>
   <body>
@@ -24,7 +24,7 @@
                 <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
                   <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-                  <div id="emailHelp" class="form-text mt-3">Lupa password ?</div>
+                  <a href="{{ route('password.request') }}" class="link-primary text-dark fw-large d-block mt-3" style="text-decoration: none">Lupa password ?</a>
                 </div>
               
                 <button type="submit" class="btn btn-primary mt-5">Login</button>

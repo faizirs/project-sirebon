@@ -1,116 +1,81 @@
+
+
 <!doctype html>
 <html lang="en">
 
 <head>
-    @include('Template.head')
+  @include('Template.head')
 </head>
 
 <body>
-    <!--  Body Wrapper -->
-    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-        data-sidebar-position="fixed" data-header-position="fixed">
-        <!-- Sidebar Start -->
-        @include('Template.left-sidebar')
-        <!--  Sidebar End -->
-        <!--  Main wrapper -->
-        <div class="body-wrapper">
-            <!--  Header Start -->
-            <header class="app-header">
-                @include('Template.navbar')
-            </header>
-            <!--  Header End -->
-            <div class="container-fluid">
-                <div class="row">
-
-                    <div class="col">
-                        <div class="card">
-                            <div class="card-body">
-                                <h5 class="card-title">View by page title and screen class</h5>
-                                <div class="table-responsive">
-                                    <table class="table text-nowrap align-middle mb-0">
-                                        <thead>
-                                            <tr class="border-2 border-bottom border-primary border-0">
-                                                <th scope="col" class="ps-0">Page Title</th>
-                                                <th scope="col">Link</th>
-                                                <th scope="col" class="text-center">Pageviews</th>
-                                                <th scope="col" class="text-center">Page Value</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="table-group-divider">
-                                            <tr>
-                                                <th scope="row" class="ps-0 fw-medium">
-                                                    <span class="table-link1 text-truncate d-block">Welcome to our
-                                                        website</span>
-                                                </th>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="link-primary text-dark fw-medium d-block">/index.html</a>
-                                                </td>
-                                                <td class="text-center fw-medium">18,456</td>
-                                                <td class="text-center fw-medium">$2.40</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="ps-0 fw-medium">
-                                                    <span class="table-link1 text-truncate d-block">Modern Admin
-                                                        Dashboard Template</span>
-                                                </th>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="link-primary text-dark fw-medium d-block">/dashboard</a>
-                                                </td>
-                                                <td class="text-center fw-medium">17,452</td>
-                                                <td class="text-center fw-medium">$0.97</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="ps-0 fw-medium">
-                                                    <span class="table-link1 text-truncate d-block">Explore our
-                                                        product catalog</span>
-                                                </th>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="link-primary text-dark fw-medium d-block">/product-checkout</a>
-                                                </td>
-                                                <td class="text-center fw-medium">12,180</td>
-                                                <td class="text-center fw-medium">$7,50</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="ps-0 fw-medium">
-                                                    <span class="table-link1 text-truncate d-block">Comprehensive
-                                                        User Guide</span>
-                                                </th>
-                                                <td>
-                                                    <a href="javascript:void(0)"
-                                                        class="link-primary text-dark fw-medium d-block">/docs</a>
-                                                </td>
-                                                <td class="text-center fw-medium">800</td>
-                                                <td class="text-center fw-medium">$5,50</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="ps-0 fw-medium border-0">
-                                                    <span class="table-link1 text-truncate d-block">Check out our
-                                                        services</span>
-                                                </th>
-                                                <td class="border-0">
-                                                    <a href="javascript:void(0)"
-                                                        class="link-primary text-dark fw-medium d-block">/services</a>
-                                                </td>
-                                                <td class="text-center fw-medium border-0">1300</td>
-                                                <td class="text-center fw-medium border-0">$2,15</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    @include('Template.left-sidebar')
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        @include('Template.navbar')
+      </header>
+      <!--  Header End -->
+      <div class="container-fluid">
+        <div class="row">
+            
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Pembayaran Retribusi</h5>
+                <hr>
+                <div class="d-flex justify-content-between mb-2">
+                  <button type="button" class="btn btn-primary">Tambah Data</button>
+                  <input type="text" id="searchInput" class="form-control w-25" placeholder="Cari...">
+                </div>
+                <div class="table-responsive table-bordered">
+                  <table class="table text-nowrap align-middle mb-0 table-striped" id="dataTable">
+                    <thead>
+                      <tr class="border-2 border-bottom border-primary border-0"> 
+                        <th scope="col" class="text-center">No.</th>
+                        <th scope="col" class="text-center">Nama Lengkap</th>
+                        <th scope="col" class="text-center">Rekening</th>
+                        <th scope="col" class="text-center">Bukti</th>
+                        <th scope="col" class="text-center">Tanggal Bayar</th>
+                        <th scope="col" class="text-center">Tanggal Tindak Lanjut</th>
+                        <th scope="col" class="text-center">Tindak Lanjut User</th>
+                        <th scope="col" class="text-center">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                      <tr>
+                        <td scope="col" class="text-center">1.</td>
+                        <td scope="col" class="text-center">Faizi Rahman Syawli</td>
+                        <td scope="col" class="text-center">32131313</td>
+                        <td scope="col" class="text-center">dsadaf</td>
+                        <td scope="col" class="text-center">dsadaf</td>
+                        <td scope="col" class="text-center">dsadaf</td>
+                        <td scope="col" class="text-center">dsadaf</td>
+                        <td scope="col" class="text-center">
+                          <a href="" class="btn btn-success btn-sm m-1">Sesuai</a>
+                          <a href="" class="btn btn-danger btn-sm m-1">Tidak Sesuai</a>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
 
-            </div>
-            @include('Template.footer')
+              
+              </div>
+          </div>
+          
         </div>
+
+      </div>
+      @include('Template.footer')
     </div>
-    @include('Template.script')
+  </div>
+  @include('Template.script')
 </body>
 
 </html>
