@@ -29,27 +29,33 @@
               <div class="card-body">
                 <h5 class="card-title">Kategori Retribusi</h5>
                 <hr>
+                @if (auth()->user()->level == "admin")
                 <div class="d-flex justify-content-between mb-2">
                   <button type="button" class="btn btn-primary">Tambah Data</button>
                   <input type="text" id="searchInput" class="form-control w-25" placeholder="Cari...">
                 </div>
+                @endif
                 <div class="table-responsive table-bordered">
                   <table class="table text-nowrap align-middle mb-0 table-striped" id="dataTable">
                     <thead>
                       <tr class="border-2 border-bottom border-primary border-0"> 
                         <th scope="col" class="text-center">No.</th>
                         <th scope="col" class="text-center">Kategori Retribusi</th>
+                        @if (auth()->user()->level == "admin")
                         <th scope="col" class="text-center">Aksi</th>
+                        @endif
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
                       <tr>
                         <td scope="col" class="text-center">1.</td>
                         <td scope="col" class="text-center">Kategori Retribusi</td>
+                        @if (auth()->user()->level == "admin")
                         <td scope="col" class="text-center">
                           <a href="" class="btn btn-primary btn-sm m-1">Ubah</a>
                           <a href="" class="btn btn-danger btn-sm m-1">Hapus</a>
                         </td>
+                        @endif
                       </tr>
                     </tbody>
                   </table>

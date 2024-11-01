@@ -95,7 +95,7 @@
         @endif
         @if (auth()->user()->level == "retribusi")
           <li class="sidebar-item mt-3">
-            <a class="sidebar-link" href="" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('profil') }}" aria-expanded="false">
               <span>
                 <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
               </span>
@@ -103,7 +103,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-alerts.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('kategori-retribusi.index') }}" aria-expanded="false">
               <span>
                 <iconify-icon icon="tabler:info-circle" class="fs-6"></iconify-icon>
               </span>
@@ -111,7 +111,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('wajib-retribusi.index') }}" aria-expanded="false">
               <span>
                 <iconify-icon icon="tabler:anchor" class="fs-6"></iconify-icon>
               </span>
@@ -119,7 +119,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('kapal.index') }}" aria-expanded="false">
               <span>
                 <iconify-icon icon="tabler:ship" class="fs-6"></iconify-icon>
               </span>

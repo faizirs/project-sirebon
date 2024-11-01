@@ -27,49 +27,30 @@
           <div class="col">
             <div class="card">
               <div class="card-body">
-                @if (auth()->user()->level == "admin")
                 <h5 class="card-title">Kapal Wajib Retribusi</h5>
                 <hr>
-                @endif
-                @if (auth()->user()->level == "retribusi")
-                <h5 class="card-title">Kapalku</h5>
-                <hr>
-                @endif
-                @if (auth()->user()->level == "admin")
                 <div class="d-flex justify-content-between mb-2">
                   <button type="button" class="btn btn-primary">Tambah Data</button>
                   <input type="text" id="searchInput" class="form-control w-25" placeholder="Cari...">
                 </div>
-                @endif
                 <div class="table-responsive table-bordered">
                   <table class="table text-nowrap align-middle mb-0 table-striped" id="dataTable">
                     <thead>
                       <tr class="border-2 border-bottom border-primary border-0"> 
                         <th scope="col" class="text-center">No.</th>
-                        <th scope="col" class="text-center">Nama Lengkap</th>
-                        <th scope="col" class="text-center">Telepon</th>
-                        <th scope="col" class="text-center">NIK</th>
-                        <th scope="col" class="text-center">Alamat</th>
-                        <th scope="col" class="text-center">Kelurahan</th>
-                        @if (auth()->user()->level == "admin")
-                        <th scope="col" class="text-center">Aksi</th>
-                        @endif
+                        <th scope="col" class="text-center">Nama Pemilik</th>
+                        <th scope="col" class="text-center">Nama Kapal</th>
+                        <th scope="col" class="text-center">Jenis Kapal</th>
+                        <th scope="col" class="text-center">Ukuran</th>
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
                       <tr>
                         <td scope="col" class="text-center">1.</td>
                         <td scope="col" class="text-center">Faizi Rahman Syawli</td>
-                        <td scope="col" class="text-center">0832131313</td>
-                        <td scope="col" class="text-center">2131313</td>
-                        <td scope="col" class="text-center">Kebon Pelok</td>
-                        <td scope="col" class="text-center">Kalijaga</td>
-                        @if (auth()->user()->level == "admin")
-                        <td scope="col" class="text-center">
-                          <a href="" class="btn btn-primary btn-sm m-1">Ubah</a>
-                          <a href="" class="btn btn-danger btn-sm m-1">Hapus</a>
-                        </td>
-                        @endif
+                        <td scope="col" class="text-center">Kapal Karam</td>
+                        <td scope="col" class="text-center">Kapal Lawd</td>
+                        <td scope="col" class="text-center">100m</td>
                       </tr>
                     </tbody>
                   </table>

@@ -29,10 +29,12 @@
               <div class="card-body">
                 <h5 class="card-title">Kapal Wajib Retribusi</h5>
                 <hr>
+                @if (auth()->user()->level == "admin")
                 <div class="d-flex justify-content-between mb-2">
                   <button type="button" class="btn btn-primary">Tambah Data</button>
                   <input type="text" id="searchInput" class="form-control w-25" placeholder="Cari...">
                 </div>
+                @endif
                 <div class="table-responsive table-bordered">
                   <table class="table text-nowrap align-middle mb-0 table-striped" id="dataTable">
                     <thead>
@@ -42,7 +44,9 @@
                         <th scope="col" class="text-center">Nama Kapal</th>
                         <th scope="col" class="text-center">Jenis Kapal</th>
                         <th scope="col" class="text-center">Ukuran</th>
+                        @if (auth()->user()->level == "admin")
                         <th scope="col" class="text-center">Aksi</th>
+                        @endif
                       </tr>
                     </thead>
                     <tbody class="table-group-divider">
@@ -52,10 +56,12 @@
                         <td scope="col" class="text-center">Kapal Karam</td>
                         <td scope="col" class="text-center">Kapal Lawd</td>
                         <td scope="col" class="text-center">100m</td>
+                        @if (auth()->user()->level == "admin")
                         <td scope="col" class="text-center">
                           <a href="" class="btn btn-primary btn-sm m-1">Ubah</a>
                           <a href="" class="btn btn-danger btn-sm m-1">Hapus</a>
                         </td>
+                        @endif
                       </tr>
                     </tbody>
                   </table>
