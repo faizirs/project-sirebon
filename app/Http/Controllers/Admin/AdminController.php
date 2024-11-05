@@ -13,4 +13,9 @@ class AdminController extends Controller
     public function profil(){
         return view('Wajib-Retribusi.profil');
     }
+
+    public function showProfile(){
+        
+        return view('Admin.my-profile');
+    }
 }

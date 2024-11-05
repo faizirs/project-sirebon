@@ -12,7 +12,11 @@ class RetribusiController extends Controller
      */
     public function profil()
     {
-        return view('Wajib-retribusi.profil');
+        return view('Wajib-Retribusi.profil');
+    }
+
+    public function konfirmasiPembayaran(){
+        return view('Wajib-Retribusi.konfirmasi-pembayaran');
     }
 
     /**

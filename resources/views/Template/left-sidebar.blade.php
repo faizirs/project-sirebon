@@ -127,7 +127,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{url('konfirmasi-pembayaran')}}" aria-expanded="false">
               <span>
                 <iconify-icon icon="tabler:shopping-cart-check" class="fs-6"></iconify-icon>
               </span>

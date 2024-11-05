@@ -17,9 +17,6 @@
         <form class="mx-auto" action="{{ route('password.email') }}" method="post">
             @csrf
 
-            <!-- Tambahkan gambar profil disini -->
-            <img src="{{ asset('Pict/logo.jpg') }}" alt="Profile Image" class="profile-img">
-
             <h4 class="text-center mb-5">Lupa <span>Password</span></h4>
             @if (session('status'))
                 <div class="alert alert-success" role="alert">
@@ -47,7 +44,7 @@
                     </span>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary w-100">Send Password Reset Link</button>
+            <button type="submit" class="btn btn-primary w-100">Kirim Link Reset Password</button>
         </form>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

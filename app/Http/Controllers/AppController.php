@@ -14,19 +14,19 @@ class AppController extends Controller
     }
     public function postLogin(Request $request){
         $credentials = $request->only('email', 'password');
-
+    
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-
-            if ($user->level == 'admin') {
-                return redirect()->route('home');
-            } elseif ($user->level == 'retribusi') {
-                return redirect()->route('profil');
-            }
+            session()->flash('login_success', true);
+    
+            return $user->level == 'admin' 
+                ? redirect()->route('home') 
+                : redirect()->route('profil');
         }
-
+    
         return redirect()->route('login')->withErrors(['login_gagal' => 'Email atau password salah']);
     }
+    
 
     public function logout(){
         Auth::logout();
@@ -52,10 +52,6 @@ class AppController extends Controller
     return back()->with('status', 'Password berhasil diubah');
     }
 
-    public function showProfile(){
-    session(['previous_url' => url()->previous()]);
-    
-    return view('auth.profile');
-}
+
 
 }

@@ -56,6 +56,18 @@
     </div>
   </div>
   @include('Template.script')
+  @if(session('login_success'))
+    <script>
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Login berhasil",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+@endif
+
 </body>
 
 </html>

@@ -16803,6 +16803,30 @@ footer {
   margin-top: auto;
 }
 
+.input-group {
+  position: relative;
+}
+
+.input-group .form-control {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.input-group .eye-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #e9ecef;
+  cursor: pointer;
+  z-index: 10;
+}
+
 
 .body-wrapper {
   position: relative;

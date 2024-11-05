@@ -37,6 +37,7 @@ Route::post('/postlogin',[AppController::class, 'postLogin'])->name('postlogin')
 
 Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/home', [AdminController::class, 'index'])->name('home');
+    Route::get('/profile', [AdminController::class, 'showProfile'])->name('profile');
     Route::resource('rekening', RekeningController::class);
     Route::resource('kategori-retribusi', KategoriRetribusiController::class);
     Route::resource('wajib-retribusi', WajibRetribusiController::class);
@@ -48,17 +49,17 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
 
 Route::group(['middleware' => ['auth','ceklevel:retribusi']], function () {
     route::get('/profil',[RetribusiController::class,'profil'])->name('profil');
-    route::get('/kategori-retribusi',[KategoriRetribusiController::class,'index'])->name('kategori-retribusi.index');
-    Route::get('/wajib-retribusi', [WajibRetribusiController::class,'index'])->name('wajib-retribusi.index');
-    Route::get('/kapal', [KapalController::class,'index'])->name('kapal.index');
-    Route::get('/konfirmasi-pembayaran', [KapalController::class,'index']);
+    Route::get('/konfirmasi-pembayaran', [RetribusiController::class,'konfirmasiPembayaran'])->name('konfirmasi-pembayaran');
+
 });
 
 
 Route::group(['middleware' => ['auth','ceklevel:admin,retribusi']], function () {
     Route::get('/change-password', [AppController::class, 'showChangePasswordForm'])->name('password.change');
     Route::post('/change-password', [AppController::class, 'updatePassword'])->name('password.ganti');
-    Route::get('/profile', [AppController::class, 'showProfile'])->name('profile');
+    route::get('/kategori-retribusi',[KategoriRetribusiController::class,'index'])->name('kategori-retribusi.index');
+    Route::get('/wajib-retribusi', [WajibRetribusiController::class,'index'])->name('wajib-retribusi.index');
+    Route::get('/kapal', [KapalController::class,'index'])->name('kapal.index');
 
 });
 
