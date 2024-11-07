@@ -34,37 +34,37 @@
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Username</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="sdadas" readonly>
+                                            <input type="text" class="form-control" value="sdadas">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Hak Akses</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="Administrator" readonly>
+                                            <input type="text" class="form-control" value="Administrator">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">NIK</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="3424234324" readonly>
+                                            <input type="text" class="form-control" value="3424234324">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="Faizi Rahman" readonly>
+                                            <input type="text" class="form-control" value="Faizi Rahman">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Telepon</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="099076756" readonly>
+                                            <input type="text" class="form-control" value="099076756">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="Kalijaga" readonly>
+                                            <input type="text" class="form-control" value="Kalijaga">
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">Simpan</button>

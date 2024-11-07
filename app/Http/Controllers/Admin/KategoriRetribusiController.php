@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class KategoriRetribusiController extends Controller
@@ -12,7 +13,8 @@ class KategoriRetribusiController extends Controller
      */
     public function index()
     {
-        return view('Admin.kategori-retribusi');
+        $kategori = Kategori::all();
+        return view('Admin.kategori-retribusi' , compact('kategori'));
     }
 
     /**
@@ -20,7 +22,7 @@ class KategoriRetribusiController extends Controller
      */
     public function create()
     {
-        //
+        return view('Admin.Kategori.create');
     }
 
     /**
@@ -28,7 +30,13 @@ class KategoriRetribusiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kategori' => 'required|string|max:50',
+        ]);
+
+        Kategori::create($request->all());
+
+        return redirect()->route('kategori-retribusi.index')->with('success', 'Data rekening berhasil ditambahkan.');
     }
 
     /**
@@ -44,7 +52,8 @@ class KategoriRetribusiController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        return view('Admin.Kategori.edit', compact('kategori'));
     }
 
     /**
@@ -52,7 +61,14 @@ class KategoriRetribusiController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'kategori' => 'required|string|max:50',
+        ]);
+
+        $kategori = Kategori::findOrFail($id);
+        $kategori->update($request->all());
+
+        return redirect()->route('kategori-retribusi.index')->with('success', 'Data rekening berhasil ditambahkan.');
     }
 
     /**
@@ -60,6 +76,8 @@ class KategoriRetribusiController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $kategori = Kategori::findOrFail($id);
+        $kategori->delete();
+        return redirect()->route('kategori-retribusi.index')->with('success', 'Data kategori berhasil dihapus.');
     }
 }

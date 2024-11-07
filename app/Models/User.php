@@ -43,4 +43,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class, 'id_user_group');
+    }
+    public function wajibRetribusi()
+    {
+        return $this->hasOne(WajibRetribusi::class, 'id_user');
+    }
 }
