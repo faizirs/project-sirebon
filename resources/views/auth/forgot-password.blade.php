@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 
@@ -9,7 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link href="{{ asset('StyleLogin/Forgot-Password/style.css') }}" rel="stylesheet">
-    <title>Login Form</title>
+    <title>Lupa Password</title>
 </head>
 
 <body>
@@ -25,24 +24,19 @@
             @endif
 
             @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul class="mb-0">
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
+                <div class="alert alert-danger mb-0">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
                 </div>
             @endif
+
             <div class="mb-3 mt-5">
                 <label for="email" class="form-label">Masukkan Email</label>
                 <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
                     name="email" required autofocus>
-                    <a href="{{ route('login') }}" class="link-primary text-dark fw-large d-block mt-3" style="text-decoration: none">Kembali</a>
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                <a href="{{ route('login') }}" class="link-primary text-dark fw-large d-block mt-3"
+                    style="text-decoration: none">Kembali</a>
             </div>
             <button type="submit" class="btn btn-primary w-100">Kirim Link Reset Password</button>
         </form>

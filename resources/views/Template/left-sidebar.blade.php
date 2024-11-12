@@ -95,7 +95,7 @@
         @endif
         @if (auth()->user()->level == "retribusi")
           <li class="sidebar-item mt-3">
-            <a class="sidebar-link" href="{{ route('profil') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('profil.index') }}" aria-expanded="false">
               <span>
                 <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
               </span>

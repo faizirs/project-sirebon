@@ -30,45 +30,52 @@
                             <div class="card-body">
                                 <h5 class="card-title">Profil</h5>
                                 <hr>
-                                <form>
+                                <form method="POST" action="{{ route('profil.update', ['profil' => Auth::user()->id]) }}">
+                                    @csrf
+                                    @method('PUT')
+                                    
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">Username</label>
+                                        <label class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="sdadas">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">Hak Akses</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="Administrator">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">NIK</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="3424234324">
+                                            <input type="text" class="form-control" id="username" name="username"
+                                                value="{{ auth()->user()->username }}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Nama Lengkap</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="Faizi Rahman">
+                                            <input type="text" class="form-control" id="hakakses"
+                                                value="{{ auth()->user()->level }}" readonly>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mb-3">
+                                        <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="nama_lengkap" class="form-control" value="{{ $wajibRetribusi ? $wajibRetribusi->nama_lengkap : '' }}" required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Telepon</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="099076756">
+                                            <input type="text" name="no_hp" class="form-control" value="{{ $wajibRetribusi ? $wajibRetribusi->no_hp : '' }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-3 col-form-label">NIK</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="nik" class="form-control" value="{{ $wajibRetribusi ? $wajibRetribusi->nik : '' }}" required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="Kalijaga">
+                                            <input type="text" name="alamat" class="form-control" value="{{ $wajibRetribusi ? $wajibRetribusi->alamat : '' }}" required>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">Simpan</button>
                                 </form>
+                                
                             </div>
                         </div>
                     </div>

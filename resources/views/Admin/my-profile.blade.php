@@ -19,7 +19,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" onclick="window.history.back();">
+                        <a class="nav-link" href="{{ url()->previous() }}">
                             <iconify-icon icon="tabler:arrow-back-up" class="fs-4"></iconify-icon>
                             <span class="nav-link me-2 fs-4">Kembali</span>
                         </a>

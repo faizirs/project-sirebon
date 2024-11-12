@@ -10,10 +10,7 @@ class RetribusiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function profil()
-    {
-        return view('Wajib-Retribusi.profil');
-    }
+    
 
     public function konfirmasiPembayaran(){
         return view('Wajib-Retribusi.konfirmasi-pembayaran');

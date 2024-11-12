@@ -29,7 +29,7 @@
                                 <hr>
                                 @if (auth()->user()->level == 'admin')
                                     <div class="d-flex justify-content-between mb-2">
-                                        <button type="button" class="btn btn-primary">Tambah Data</button>
+                                        <a href="{{ route('kapal.create') }}" class="btn btn-primary">Tambah Data</a>
                                         <input type="text" id="searchInput" class="form-control w-25"
                                             placeholder="Cari...">
                                     </div>
@@ -49,19 +49,31 @@
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
-                                            <tr>
-                                                <td scope="col" class="text-center">1.</td>
-                                                <td scope="col" class="text-center">Faizi Rahman Syawli</td>
-                                                <td scope="col" class="text-center">Kapal Karam</td>
-                                                <td scope="col" class="text-center">Kapal Lawd</td>
-                                                <td scope="col" class="text-center">100m</td>
-                                                @if (auth()->user()->level == 'admin')
-                                                    <td scope="col" class="text-center">
-                                                        <a href="" class="btn btn-primary btn-sm m-1">Ubah</a>
-                                                        <a href="" class="btn btn-danger btn-sm m-1">Hapus</a>
-                                                    </td>
-                                                @endif
-                                            </tr>
+                                            @foreach ($kapal as $index => $data)
+                                                <tr>
+                                                    <td scope="col" class="text-center">{{ $index + 1 }}.</td>
+                                                    <td scope="col" class="text-center">{{ $data->wajibRetribusi->nama ?? 'N/A' }}</td>
+                                                    <td scope="col" class="text-center">{{ $data->nama_kapal }}</td>
+                                                    <td scope="col" class="text-center">{{ $data->jenisKapal->jenis_kapal ?? 'N/A' }}</td>
+                                                    <td scope="col" class="text-center">{{ $data->ukuran }}</td>
+
+                                                    @if (auth()->user()->level == 'admin')
+                                                        <td scope="col" class="text-center">
+                                                            <a href="{{ route('kapal.edit', $data->id) }}"
+                                                                class="btn btn-primary btn-sm m-1">Ubah</a>
+
+                                                            <form
+                                                                action="{{ route('kapal.destroy', $data->id) }}"
+                                                                method="POST" style="display:inline;">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-danger btn-sm m-1"
+                                                                    onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                                            </form>
+                                                        </td>
+                                                    @endif
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

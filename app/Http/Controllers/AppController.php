@@ -13,7 +13,7 @@ class AppController extends Controller
         return view('auth.Login-aplikasi');
     }
     public function postLogin(Request $request){
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('username', 'password');
     
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
@@ -21,7 +21,7 @@ class AppController extends Controller
     
             return $user->level == 'admin' 
                 ? redirect()->route('home') 
-                : redirect()->route('profil');
+                : redirect()->route('profil.index');
         }
     
         return redirect()->route('login')->withErrors(['login_gagal' => 'Email atau password salah']);
@@ -38,19 +38,36 @@ class AppController extends Controller
     }
 
     public function updatePassword(Request $request)
-    {   
-        $request->validate([
-            'old_password' => 'required',
-            'new_password' => 'required|min:8|confirmed',
+{   
+    $request->validate([
+        'old_password' => 'required',
+        'new_password' => [
+            'required',
+            'string',
+            'min:8',
+            'regex:/[a-z]/',
+            'regex:/[A-Z]/', 
+            'regex:/[0-9]/', 
+            'regex:/[@$!%*?&#]/',
+            'confirmed',
+        ],
+        ], [
+            'old_password.required' => 'Password lama wajib diisi.',
+            'new_password.required' => 'Password baru wajib diisi.',
+            'new_password.min' => 'Password baru harus memiliki minimal 8 karakter.',
+            'new_password.regex' => 'Password baru harus mengandung setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu karakter spesial (@$!%*?&#).',
+            'new_password.confirmed' => 'Konfirmasi password tidak cocok.',
         ]);
-        
+
         if (!Hash::check($request->old_password, auth()->user()->password)) {
             return back()->withErrors(['old_password' => 'Password lama salah']);
         }
+
         auth()->user()->update(['password' => Hash::make($request->new_password)]);
 
-    return back()->with('status', 'Password berhasil diubah');
+        return back()->with('status', 'Password berhasil diubah');
     }
+
 
 
 

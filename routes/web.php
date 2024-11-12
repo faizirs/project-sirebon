@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\WajibRetribusiController;
 use App\Http\Controllers\Admin\KapalController;
 use App\Http\Controllers\Admin\PembayaranController;
 use App\Http\Controllers\Retribusi\RetribusiController;
+use App\Http\Controllers\Retribusi\ProfilController;
 
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
@@ -16,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,7 +42,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/profile', [AdminController::class, 'showProfile'])->name('profile');
     Route::resource('rekening', RekeningController::class);
     Route::resource('kategori-retribusi', KategoriRetribusiController::class);
-    Route::resource('wajib-retribusi', WajibRetribusiController::class);
+    
     Route::resource('kapal', KapalController::class);
     Route::resource('pembayaran', PembayaranController::class);
 
@@ -48,9 +50,8 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
 });
 
 Route::group(['middleware' => ['auth','ceklevel:retribusi']], function () {
-    route::get('/profil',[RetribusiController::class,'profil'])->name('profil');
     Route::get('/konfirmasi-pembayaran', [RetribusiController::class,'konfirmasiPembayaran'])->name('konfirmasi-pembayaran');
-
+    Route::resource('profil', ProfilController::class);
 });
 
 
@@ -58,7 +59,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,retribusi']], function () 
     Route::get('/change-password', [AppController::class, 'showChangePasswordForm'])->name('password.change');
     Route::post('/change-password', [AppController::class, 'updatePassword'])->name('password.ganti');
     route::get('/kategori-retribusi',[KategoriRetribusiController::class,'index'])->name('kategori-retribusi.index');
-    Route::get('/wajib-retribusi', [WajibRetribusiController::class,'index'])->name('wajib-retribusi.index');
+    Route::resource('wajib-retribusi', WajibRetribusiController::class);
     Route::get('/kapal', [KapalController::class,'index'])->name('kapal.index');
 
 });
@@ -79,8 +80,9 @@ Route::post('/forgot-password', function (Request $request) {
     }
 
     return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __('Kami telah mengirimkan tautan untuk mereset kata sandi Anda')])
+        : back()->withErrors(['email' => __('Gagal mengirim tautan reset kata sandi')]);
+
 })->middleware('guest')->name('password.email');
 
 
@@ -93,8 +95,26 @@ Route::post('/reset-password', function (Request $request) {
     $request->validate([
         'token' => 'required',
         'email' => 'required|email',
-        'password' => 'required|min:8|confirmed',
+        'password' => [
+            'required',
+            'string',
+            'min:8',
+            'regex:/[a-z]/',
+            'regex:/[A-Z]/',
+            'regex:/[0-9]/',
+            'regex:/[@$!%*?&#]/',
+            'confirmed',
+        ],
+    ], [
+        'token.required' => 'Token wajib diisi.',
+        'email.required' => 'Email wajib diisi.',
+        'email.email' => 'Format email tidak valid.',
+        'password.required' => 'Password wajib diisi.',
+        'password.min' => 'Password harus memiliki minimal 8 karakter.',
+        'password.regex' => 'Password harus mengandung setidaknya satu huruf besar, satu huruf kecil, satu angka, dan satu karakter spesial (@$!%*?&#).',
+        'password.confirmed' => 'Konfirmasi password tidak cocok.',
     ]);
+    
  
     $status = Password::reset(
         $request->only('email', 'password', 'password_confirmation', 'token'),
