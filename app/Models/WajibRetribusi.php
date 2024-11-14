@@ -20,4 +20,9 @@ class WajibRetribusi extends Model
     {
         return $this->belongsTo(Kelurahan::class, 'id_kelurahan');
     }
+    public function kapal()
+{
+    return $this->hasMany(Kapal::class, 'id_wajib_retribusi');
+}
+
 }

@@ -35,45 +35,48 @@
                                     @method('PUT')
                                     
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                        <label class="col-sm-3 col-form-label">Username</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="username" name="username"
                                                 value="{{ auth()->user()->username }}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                        <label class="col-sm-3 col-form-label">Hak Akses</label>
                                         <div class="col-sm-9">
                                             <input type="text" class="form-control" id="hakakses"
                                                 value="{{ auth()->user()->level }}" readonly>
                                         </div>
                                     </div>
+                                    @if ($data = auth()->user()->wajibRetribusi)
                                     
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                        <label class="col-sm-3 col-form-label">Nama</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="nama_lengkap" class="form-control" value="{{ $wajibRetribusi ? $wajibRetribusi->nama_lengkap : '' }}" required>
+                                            <input type="text" name="nama" class="form-control" value="{{ $data->nama }}" required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Telepon</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="no_hp" class="form-control" value="{{ $wajibRetribusi ? $wajibRetribusi->no_hp : '' }}" required>
+                                            <input type="text" name="no_hp" class="form-control" value="{{ $data->no_hp }}" required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">NIK</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="nik" class="form-control" value="{{ $wajibRetribusi ? $wajibRetribusi->nik : '' }}" required>
+                                            <input type="text" name="nik" class="form-control" value="{{ $data->nik }}" required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="alamat" class="form-control" value="{{ $wajibRetribusi ? $wajibRetribusi->alamat : '' }}" required>
+                                            <input type="text" name="alamat" class="form-control" value="{{ $data->alamat }}" required>
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary mt-4">Simpan</button>
+                                        
+                                    @endif
                                 </form>
                                 
                             </div>

@@ -10,16 +10,16 @@ use Illuminate\Support\Facades\Auth;
 class ProfilController extends Controller
 {
     public function index(){
-        $wajibRetribusi = WajibRetribusi::where('id_user', auth()->user()->id)->first();
+        $wajibRetribusi = WajibRetribusi::where('id_user', auth()->user()->id)->get();
 
-        return view('Wajib-Retribusi.profil',compact('wajibRetribusi'));
+        return view('Wajib-Retribusi.profil');
     } 
 
     public function update(Request $request) {
         $request->validate([
             'username' => 'required|string|max:255',
             'nik' => 'required|string|max:16',
-            'nama_lengkap' => 'required|string|max:255',
+            'nama' => 'required|string|max:255',
             'no_hp' => 'required|string|max:16',
             'alamat' => 'required|string|max:255',
         ]);
@@ -36,7 +36,7 @@ class ProfilController extends Controller
         // Pastikan $wajibRetribusi tidak null sebelum diakses
         if ($wajibRetribusi) {
             $wajibRetribusi->nik = $request->input('nik');
-            $wajibRetribusi->nama = $request->input('nama_lengkap');
+            $wajibRetribusi->nama = $request->input('nama');
             $wajibRetribusi->no_hp = $request->input('no_hp');
             $wajibRetribusi->alamat = $request->input('alamat');
             $wajibRetribusi->save(); // Simpan perubahan ke database

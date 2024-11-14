@@ -64,18 +64,18 @@
                 <div class="col">
                     <div class="card profile-card">
                         <div class="card-body">
-                            <h5 class="card-title">Tambah Rekening Pembayaran</h5>
+                            <h5 class="card-title">Tambah Kapal Wajib Retribusi</h5>
                             <hr>
                             <form action="{{ route('kapal.store') }}" method="POST">
                                 @csrf
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label" for="id_user">Pemilik Kapal</label>
                                     <div class="col-sm-9">
-                                        <select name="id_user" id="id_user" class="form-select">
+                                        <select name="id_wajib_retribusi" id="id_wajib_retribusi" class="form-select">
                                             @foreach ($pemilikKapal as $pemilik)
-                                                <option value="{{ $pemilik->id }}">{{ $pemilik->nama }}</option> <!-- Pastikan 'nama' adalah field yang sesuai -->
+                                                <option value="{{ $pemilik->id }}">{{ $pemilik->nama }}</option>
                                             @endforeach
-                                        </select>
+                                        </select>                                        
                                     </div>
                                 </div>                                
                                 <div class="row mb-3">

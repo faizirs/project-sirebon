@@ -26,7 +26,7 @@
                         <div class="card">
                             <div class="card-body">
                                 @if (auth()->user()->level == 'admin')
-                                    <h5 class="card-title">Kapal Wajib Retribusi</h5>
+                                    <h5 class="card-title">Wajib Retribusi</h5>
                                     <hr>
                                 @endif
                                 @if (auth()->user()->level == 'retribusi')
