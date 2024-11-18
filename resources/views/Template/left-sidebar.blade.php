@@ -82,16 +82,15 @@
                 </a>
               </li>
             </ul>
-          </li>
-
+          </li>    
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('logout') }}" aria-expanded="false">
-              <span>
-                <iconify-icon icon="tabler:logout" class="fs-6"></iconify-icon>
-              </span>
-              <span class="hide-menu">Logout</span>
+            <a href="{{ route('logout') }}" class="sidebar-link" onclick="confirmLogout();">
+                <span>
+                    <iconify-icon icon="tabler:logout" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Logout</span>
             </a>
-          </li>
+        </li>        
         @endif
         @if (auth()->user()->level == "retribusi")
           <li class="sidebar-item mt-3">
@@ -127,7 +126,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{url('konfirmasi-pembayaran')}}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('konfirmasi-pembayaran.index') }}" aria-expanded="false">
               <span>
                 <iconify-icon icon="tabler:shopping-cart-check" class="fs-6"></iconify-icon>
               </span>
@@ -142,15 +141,15 @@
               <span class="hide-menu">Laporan</span>
             </a>
           </li>
-
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('logout') }}" aria-expanded="false">
-              <span>
-                <iconify-icon icon="tabler:logout" class="fs-6"></iconify-icon>
-              </span>
-              <span class="hide-menu">Logout</span>
+            <a class="sidebar-link" onclick="confirmLogout();">
+                <span>
+                    <iconify-icon icon="tabler:logout" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Logout</span>
             </a>
-          </li>
+        </li>
+         
         @endif
         </ul>
       </nav>
@@ -158,3 +157,20 @@
     </div>
     <!-- End Sidebar scroll-->
   </aside>
+  <script>
+    function confirmLogout() {
+      Swal.fire({
+          title: "Yakin Logout?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Logout"
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href = '{{ route('logout') }}';
+          }
+      });
+  }
+
+  </script>

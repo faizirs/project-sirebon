@@ -27,9 +27,18 @@ class UserSeeder extends Seeder
     
     User::create([
         'name' => 'Wajib Retribusi',
-        'username' => 'retribusi_',
+        'username' => 'retribusi_1',
         'level' => 'retribusi',
         'email' => 'user@gmail.com',
+        'password' => bcrypt('user123'),
+        'id_user_group' => 2,
+        'remember_token' => Str::random(60),
+    ]);
+    User::create([
+        'name' => 'Wajib Retribusi',
+        'username' => 'retribusi_2',
+        'level' => 'retribusi',
+        'email' => 'user2@gmail.com',
         'password' => bcrypt('user123'),
         'id_user_group' => 2,
         'remember_token' => Str::random(60),

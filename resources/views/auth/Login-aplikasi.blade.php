@@ -1,54 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link href="{{ asset('StyleLogin/Login/style.css') }}" rel="stylesheet">
-    <title>Login Form</title>
+	<title>SiRebon</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">	
+    <link rel="shortcut icon" type="image/png" href="{{ asset('SEOdash/src/assets/images/logos/logo-sirebon-1.png') }}" />
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/vendor/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/fonts/iconic/css/material-design-iconic-font.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/vendor/animate/animate.css') }}">	
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/vendor/css-hamburgers/hamburgers.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/vendor/animsition/css/animsition.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/vendor/select2/select2.min.css') }}">	
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/vendor/daterangepicker/daterangepicker.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('StyleLogin/Login/css/main.css') }}">
 </head>
-
 <body>
-    <div class="container-fluid ">
-        <form class="mx-auto" action="{{ route('postlogin') }}" method="post">
-            @csrf
+	
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" action="{{ route('postlogin') }}" method="post">
+                    @csrf
+					<span class="login100-form-title p-b-26">
+						Login Sirebon
+					</span>
+					<span class="login100-form-title p-b-48">
+						<img src="{{ asset('SEOdash/src/assets/images/logos/logo-sirebon-2.png') }}" alt="Profile Image" class="profile-img">
+					</span>
 
-            <img src="{{ asset('Pict/logo.jpg') }}" alt="Profile Image" class="profile-img">
+					<div class="wrap-input100 validate-input">
+						<input class="input100" type="text" name="username">
+						<span class="focus-input100" data-placeholder="Username"></span>
+					</div>
 
-            <h4 class="text-center">Login <span>SiRebon</span></h4>
-            <div class="mb-3 mt-5">
-                <label for="exampleInputEmail1" class="form-label">Username</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    name="username">
-            </div>
-            <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-                <a href="{{ route('password.request') }}" class="link-primary text-dark fw-large d-block mt-3"
-                    style="text-decoration: none">Lupa password ?</a>
-            </div>
+					<div class="wrap-input100 validate-input">
+						<span class="btn-show-pass">
+							<i class="zmdi zmdi-eye"></i>
+						</span>
+						<input class="input100" type="password" name="password">
+						<span class="focus-input100" data-placeholder="Password"></span>
+					</div>
 
-            <button type="submit" class="btn btn-primary mt-5">Login</button>
-        </form>
-    </div>
+					<div class="container-login100-form-btn">
+						<div class="wrap-login100-form-btn">
+							<div class="login100-form-bgbtn"></div>
+							<button class="login100-form-btn" type="submit">
+								Login
+							</button>
+						</div>
+					</div>
 
+					<div class="text-center p-t-10">
+						<a class="txt1" href="{{ route('password.request') }}">
+							Lupa Password?
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
-    </script>
+	<div id="dropDownSelect1"></div>
+	
+	
+	<script src="{{ asset('StyleLogin/Login/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+	<script src="{{ asset('StyleLogin/Login/vendor/animsition/js/animsition.min.js') }}"></script>
+	<script src="{{ asset('StyleLogin/Login/vendor/bootstrap/js/popper.js') }}"></script>
+	<script src="{{ asset('StyleLogin/Login/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script src="{{ asset('StyleLogin/Login/vendor/select2/select2.min.js') }}"></script>
+	<script src="{{ asset('StyleLogin/Login/vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{ asset('StyleLogin/Login/vendor/daterangepicker/daterangepicker.js') }}"></script>
+	<script src="{{ asset('StyleLogin/Login/vendor/countdowntime/countdowntime.js') }}"></script>
+	<script src="{{ asset('StyleLogin/Login/js/main.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    @if($errors->has('login_gagal'))
-        <script>
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "{{ $errors->first('login_gagal') }}"
-            });
-        </script>
-    @endif
-</body>
 
+    @if($errors->has('login_gagal'))
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "{{ $errors->first('login_gagal') }}"
+        });
+    </script>
+@endif
+</body>
 </html>

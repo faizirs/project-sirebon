@@ -4,7 +4,8 @@
 <head>
     @include('Template.head')
     <style>
-        .form-control {
+        .form-control,
+        .form-select {
             background: #e4e7ea;
             color: #3a4752;
         }
@@ -64,7 +65,7 @@
                 <div class="col">
                     <div class="card profile-card">
                         <div class="card-body">
-                            <h5 class="card-title">Tambah Kapal Wajib Retribusi</h5>
+                            <h5 class="card-title">Edit Kapal Wajib Retribusi</h5>
                             <hr>
                             <form action="{{ route('kapal.update', $kapal->id) }}" method="POST">
                                 @csrf

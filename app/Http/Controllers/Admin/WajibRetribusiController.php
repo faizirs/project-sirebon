@@ -53,7 +53,7 @@ class WajibRetribusiController extends Controller
             'status' => $request->status,
         ]);
     
-        return redirect()->route('wajib-retribusi.index')->with('success', 'Data rekening berhasil ditambahkan.');
+        return redirect()->route('wajib-retribusi.index')->with('success', 'Data wajib retribusi berhasil ditambahkan');
     }
 
     /**
@@ -100,7 +100,7 @@ class WajibRetribusiController extends Controller
             'status' => $request->status,
         ]);
     
-        return redirect()->route('wajib-retribusi.index')->with('success', 'Data rekening berhasil ditambahkan.');
+        return redirect()->route('wajib-retribusi.index')->with('success', 'Data rekening berhasil diedit');
     }
 
     /**
@@ -110,6 +110,6 @@ class WajibRetribusiController extends Controller
     {
         $wajibretribusi = WajibRetribusi::findOrFail($id);
         $wajibretribusi->delete();
-        return redirect()->route('wajib-retribusi.index')->with('success', 'Data wajib retribusi berhasil dihapus.');
+        return redirect()->route('wajib-retribusi.index')->with('success', 'Data wajib retribusi berhasil dihapus');
     }
 }

@@ -4,10 +4,11 @@
 <head>
     @include('Template.head')
     <style>
-      .form-control {
-        background: #e4e7ea;
-        color: #3a4752;
-      }
+        .form-control,
+        .form-select {
+            background: #e4e7ea;
+            color: #3a4752;
+        }
     </style>
 </head>
 
@@ -147,7 +148,17 @@
             });
         </script>
     @endif
-
+    @if(session('success'))
+    <script>
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+@endif
 </body>
 
 </html>

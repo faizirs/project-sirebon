@@ -41,7 +41,7 @@ class RekeningController extends Controller
 
         MsRekening::create($request->all());
 
-        return redirect()->route('rekening.index')->with('success', 'Data rekening berhasil ditambahkan.');
+        return redirect()->route('rekening.index')->with('success', 'Data rekening berhasil ditambahkan');
     }
 
     /**
@@ -78,7 +78,7 @@ class RekeningController extends Controller
 
         $rekening->update($request->all());
 
-        return redirect()->route('rekening.index')->with('success', 'Data rekening berhasil ditambahkan.');
+        return redirect()->route('rekening.index')->with('success', 'Data rekening berhasil diedit');
     
     }
 
@@ -90,6 +90,6 @@ class RekeningController extends Controller
 
         $rekening = MsRekening::findOrFail($id);
         $rekening->delete();
-        return redirect()->route('rekening.index')->with('success', 'Data rekening berhasil dihapus.');
+        return redirect()->route('rekening.index')->with('success', 'Data rekening berhasil dihapus');
     }
 }

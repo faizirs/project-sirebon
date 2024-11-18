@@ -4,10 +4,11 @@
 <head>
     @include('Template.head')
     <style>
-      .form-control, .form-select {
-        background: #e4e7ea;
-        color: #3a4752;
-      }
+        .form-control,
+        .form-select {
+            background: #e4e7ea;
+            color: #3a4752;
+        }
     </style>
 </head>
 
@@ -24,48 +25,70 @@
 
             <div class="container-fluid">
                 <div class="row">
-
                     <div class="col">
                         <div class="card profile-card">
                             <div class="card-body">
                                 <h5 class="card-title">Konfirmasi Pembayaran Retribusi</h5>
                                 <hr>
-                                <form>
+
+                                <!-- Menampilkan pesan error -->
+                                @if ($errors->any())
+                                    <div class="alert alert-danger">
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
+
+                                <form action="{{ route('pembayaran.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <!-- Field untuk jenis bank tetap -->
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">Jenis Bank</label>
+                                        <label for="id_ref_bank" class="col-sm-3 col-form-label">Jenis Bank</label>
                                         <div class="col-sm-9">
-                                          <select class="form-select" id="choices" name="choices">
-                                              <option value="Pilihan 1">Pilihan 1</option>
-                                              <option value="Pilihan 2">Pilihan 2</option>
-                                              <option value="Pilihan 3">Pilihan 3</option>
-                                          </select>
-                                      </div>
-                                      
+                                            <select name="id_ref_bank" class="form-select" id="choices">
+                                                @foreach ($banks as $bank)
+                                                    <option value="{{ $bank->id }}">{{ $bank->nama_bank }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-sm-3 col-form-label">Nomor Rekening</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="no_rekening" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-sm-3 col-form-label">Nama Pemilik Rekening</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" name="nama_pemilik_rekening" class="form-control"
+                                                required>
+                                        </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Nominal Transfer</label>
                                         <div class="col-sm-9">
-                                            <input type="number" class="form-control" value="10000000">
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">Nomor Rekening</label>
-                                        <div class="col-sm-9">
-                                            <input type="number" class="form-control" value="3424234324">
+                                            <input type="number" name="biaya_retribusi" class="form-control"
+                                                value="{{ $biayaRetribusi }}" readonly>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Bukti Pembayaran</label>
                                         <div class="col-sm-9">
-                                            <input type="file" class="form-control" value="">
+                                            <input type="file" name="file_bukti" class="form-control" accept=".jpg,.jpeg,.png,.pdf">
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary mt-4">Kirim</button>
+                                    <button type="submit" class="btn btn-primary mt-4">Konfirmasi Pembayaran</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
 

@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
 <script>
     function confirmLogout() {
         Swal.fire({
@@ -19,7 +20,7 @@
             confirmButtonText: "Logout"
         }).then((result) => {
             if (result.isConfirmed) {
-                document.getElementById('logout-form').submit();
+                window.location.href = '{{ route('logout') }}';
             }
         });
     }
@@ -38,3 +39,32 @@
         }
     }
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const tableRows = document.querySelectorAll('#dataTable tbody tr');
+    
+        searchInput.addEventListener('input', function() {
+            const filter = searchInput.value.toLowerCase();
+    
+            tableRows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                let match = false;
+    
+                cells.forEach(cell => {
+                    if (cell.textContent.toLowerCase().includes(filter)) {
+                        match = true;
+                    }
+                });
+    
+                if (match) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+
+    </script>
+    

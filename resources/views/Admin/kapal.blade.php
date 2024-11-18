@@ -34,6 +34,14 @@
                                             placeholder="Cari...">
                                     </div>
                                 @endif
+                                @if (auth()->user()->level == 'retribusi')
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <input type="text" id="searchInput" class="form-control w-25"
+                                            placeholder="Cari...">
+                                    </div>
+                                @endif
+                                        
+                                
                                 <div class="table-responsive table-bordered">
                                     <table class="table text-nowrap align-middle mb-0 table-striped" id="dataTable">
                                         <thead>
@@ -89,6 +97,18 @@
             </div>
         </div>
         @include('Template.script')
+        @if(session('success'))
+    <script>
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+@endif
+
 </body>
 
 </html>

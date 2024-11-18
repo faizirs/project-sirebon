@@ -36,7 +36,7 @@ class KategoriRetribusiController extends Controller
 
         Kategori::create($request->all());
 
-        return redirect()->route('kategori-retribusi.index')->with('success', 'Data rekening berhasil ditambahkan.');
+        return redirect()->route('kategori-retribusi.index')->with('success', 'Data kategori berhasil ditambahkan');
     }
 
     /**
@@ -68,7 +68,7 @@ class KategoriRetribusiController extends Controller
         $kategori = Kategori::findOrFail($id);
         $kategori->update($request->all());
 
-        return redirect()->route('kategori-retribusi.index')->with('success', 'Data rekening berhasil ditambahkan.');
+        return redirect()->route('kategori-retribusi.index')->with('success', 'Data kategori berhasil diedit');
     }
 
     /**
@@ -78,6 +78,6 @@ class KategoriRetribusiController extends Controller
     {
         $kategori = Kategori::findOrFail($id);
         $kategori->delete();
-        return redirect()->route('kategori-retribusi.index')->with('success', 'Data kategori berhasil dihapus.');
+        return redirect()->route('kategori-retribusi.index')->with('success', 'Data kategori berhasil dihapus');
     }
 }

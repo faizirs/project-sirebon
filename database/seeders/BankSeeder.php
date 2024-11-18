@@ -20,6 +20,10 @@ class BankSeeder extends Seeder
             ['id' => 4, 'nama_bank' => 'BANK BNI'],
             ['id' => 5, 'nama_bank' => 'BANK BSI'],
             ['id' => 6, 'nama_bank' => 'BANK BCA'],
+            ['id' => 7, 'nama_bank' => 'BANK CIMB NIAGA'],
+            ['id' => 8, 'nama_bank' => 'BANK DANAMON'],
+            ['id' => 9, 'nama_bank' => 'BANK MEGA'],
+            ['id' => 10, 'nama_bank' => 'BANK OCBC NISP'],
         ]);
     }
 }

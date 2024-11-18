@@ -47,21 +47,26 @@
                         <th scope="col" class="text-center">Aksi</th>
                       </tr>
                     </thead>
-                    <tbody class="table-group-divider">
-                      <tr>
-                        <td scope="col" class="text-center">1.</td>
-                        <td scope="col" class="text-center">Faizi Rahman Syawli</td>
-                        <td scope="col" class="text-center">32131313</td>
-                        <td scope="col" class="text-center">dsadaf</td>
-                        <td scope="col" class="text-center">dsadaf</td>
-                        <td scope="col" class="text-center">dsadaf</td>
-                        <td scope="col" class="text-center">dsadaf</td>
-                        <td scope="col" class="text-center">
-                          <a href="" class="btn btn-success btn-sm m-1">Sesuai</a>
-                          <a href="" class="btn btn-danger btn-sm m-1">Tidak Sesuai</a>
-                        </td>
-                      </tr>
+                      <tbody class="table-group-divider">
+                        @foreach($pembayaran as $data)
+                            <tr>
+                                <td class="text-center">{{ $loop->iteration }}</td>
+                                <td class="text-center">{{ $data->nama_pemilik_rekening }}</td>
+                                <td class="text-center">{{ $data->no_rekening }}</td>
+                                <td class="text-center">
+                                    <a href="{{ Storage::url($data->file_bukti) }}" target="_blank">Lihat Bukti</a>
+                                </td>
+                                <td class="text-center">{{ $data->created_at->format('d-m-Y') }}</td>
+                                <td class="text-center">{{ $data->tanggal_tindak_lanjut ?? 'Belum Ditindak' }}</td>
+                                <td class="text-center">{{ $data->tindak_lanjut_user ?? 'Belum Ada' }}</td>
+                                <td class="text-center">
+                                    <a href="" class="btn btn-success btn-sm m-1">Sesuai</a>
+                                    <a href="" class="btn btn-danger btn-sm m-1">Tidak Sesuai</a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
+                    
                   </table>
                 </div>
 
@@ -76,6 +81,18 @@
     </div>
   </div>
   @include('Template.script')
+  @if(session('success'))
+    <script>
+        Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "{{ session('success') }}",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+@endif
+
 </body>
 
 </html>

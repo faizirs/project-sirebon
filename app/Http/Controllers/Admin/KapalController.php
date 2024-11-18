@@ -54,7 +54,7 @@ class KapalController extends Controller
     
     
 
-    return redirect()->route('kapal.index')->with('success', 'Data kapal berhasil ditambahkan.');
+    return redirect()->route('kapal.index')->with('success', 'Data kapal berhasil ditambahkan');
 }
 
 
@@ -93,7 +93,7 @@ class KapalController extends Controller
         $kapal = Kapal::findOrFail($id);
         $kapal->update($request->all());
 
-        return redirect()->route('kapal.index')->with('success', 'Data kapal berhasil diperbarui.');
+        return redirect()->route('kapal.index')->with('success', 'Data kapal berhasil diedit');
     }
 
 
@@ -104,6 +104,6 @@ class KapalController extends Controller
     {
         $kapal = Kapal::findOrFail($id);
         $kapal->delete();
-        return redirect()->route('kapal.index')->with('success', 'Data kapal berhasil dihapus.');
+        return redirect()->route('kapal.index')->with('success', 'Data kapal berhasil dihapus');
     }
 }
