@@ -84,7 +84,7 @@
             </ul>
           </li>    
           <li class="sidebar-item">
-            <a href="{{ route('logout') }}" class="sidebar-link" onclick="confirmLogout();">
+            <a class="sidebar-link" onclick="confirmLogout();">
                 <span>
                     <iconify-icon icon="tabler:logout" class="fs-6"></iconify-icon>
                 </span>

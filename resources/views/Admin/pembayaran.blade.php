@@ -54,7 +54,7 @@
                                 <td class="text-center">{{ $data->nama_pemilik_rekening }}</td>
                                 <td class="text-center">{{ $data->no_rekening }}</td>
                                 <td class="text-center">
-                                    <a href="{{ Storage::url($data->file_bukti) }}" target="_blank">Lihat Bukti</a>
+                                  <img src="{{ asset('bukti_pembayaran/' . $data->file_bukti) }}" alt="{{ $data->title }}" class="rounded" style="width: 100px">
                                 </td>
                                 <td class="text-center">{{ $data->created_at->format('d-m-Y') }}</td>
                                 <td class="text-center">{{ $data->tanggal_tindak_lanjut ?? 'Belum Ditindak' }}</td>

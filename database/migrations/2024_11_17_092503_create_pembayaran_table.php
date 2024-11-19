@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_ref_bank');
-            $table->string('no_rekening');
+            $table->string('no_rekening')->unique();
             $table->string('nama_pemilik_rekening');
             $table->decimal('biaya_retribusi', 15, 2);
             $table->string('file_bukti');

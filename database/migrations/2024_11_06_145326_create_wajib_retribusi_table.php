@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->string('nama', 50);
             $table->string('no_hp', 16);
-            $table->string('nik', 16);
+            $table->string('nik', 16)->unique();
             $table->text('alamat');
             $table->unsignedBigInteger('id_kelurahan');
             $table->char('status', 1);

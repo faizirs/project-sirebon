@@ -40,7 +40,8 @@ class PembayaranController extends Controller
         ]);
     
         // Simpan file bukti pembayaran
-        $filePath = $request->file('file_bukti')->store('public/bukti_pembayaran');
+        $file_bukti = $request->file('file_bukti');
+        $file_bukti->move(public_path('bukti_pembayaran'), $file_bukti->getClientOriginalName());
     
         // Simpan data ke database
         Pembayaran::create([
@@ -48,13 +49,14 @@ class PembayaranController extends Controller
             'no_rekening' => $request->no_rekening,
             'nama_pemilik_rekening' => $request->nama_pemilik_rekening,
             'biaya_retribusi' => $request->biaya_retribusi,
-            'file_bukti' => $filePath,
+            'file_bukti' => $file_bukti->getClientOriginalName(),
         ]);
         MsRekening::create([
             'id_ref_bank' => $request->id_ref_bank,
             'no_rekening' => $request->no_rekening,
             'nama_akun' => $request->nama_pemilik_rekening
         ]);
+        
     
         return redirect()->route('konfirmasi-pembayaran.index')->with('success', 'Data pembayaran berhasil disimpan');
     }

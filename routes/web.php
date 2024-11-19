@@ -40,7 +40,6 @@ Route::post('/postlogin',[AppController::class, 'postLogin'])->name('postlogin')
 
 Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
     Route::get('/home', [AdminController::class, 'index'])->name('home');
-    Route::get('/profile', [AdminController::class, 'showProfile'])->name('profile');
     Route::resource('rekening', RekeningController::class);
     Route::resource('kategori-retribusi', KategoriRetribusiController::class);
     

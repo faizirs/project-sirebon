@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_ms_rekening');
             $table->unsignedBigInteger('id_ref_bank');
             $table->string('nama_pemilik_rekening', 50);
-            $table->string('no_rekening_pemilik', 25);
+            $table->string('no_rekening_pemilik', 25)->unique();
             $table->string('file_bukti');
             $table->date('tgl_bayar');
             $table->char('status', 1)->default('P');

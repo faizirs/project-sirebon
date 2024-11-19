@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_ref_bank');
             $table->string('nama_akun', 50);
-            $table->string('no_rekening', 50);
+            $table->string('no_rekening', 50)->unique();
             
             $table->timestamps();
 
