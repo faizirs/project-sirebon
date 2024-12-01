@@ -24,7 +24,7 @@
 				<form class="login100-form validate-form" action="{{ route('postlogin') }}" method="post">
                     @csrf
 					<span class="login100-form-title p-b-26">
-						Login Sirebon
+						Login SIREPAL
 					</span>
 					<span class="login100-form-title p-b-48">
 						<img src="{{ asset('SEOdash/src/assets/images/logos/logo-sirebon-2.png') }}" alt="Profile Image" class="profile-img">

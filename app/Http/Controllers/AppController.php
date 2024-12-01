@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
 
 class AppController extends Controller
 {
@@ -17,11 +18,16 @@ class AppController extends Controller
     
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
+            session()->put('session_user', $user);
             session()->flash('login_success', true);
     
-            return $user->level == 'admin' 
-                ? redirect()->route('home') 
-                : redirect()->route('profil.index');
+            if ($user->level == 'superadmin') {
+                return redirect()->route('kelola-user.index'); // Route untuk halaman superadmin
+            } elseif ($user->level == 'admin') {
+                return redirect()->route('home'); // Route untuk halaman admin
+            } else {
+                return redirect()->route('profil.index'); // Route untuk halaman retribusi
+            }
         }
     
         return redirect()->route('login')->withErrors(['login_gagal' => 'Email atau password salah']);

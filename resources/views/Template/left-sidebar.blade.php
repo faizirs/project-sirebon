@@ -3,7 +3,7 @@
     <div>
       <div class="brand-logo d-flex align-items-center justify-content-between mb-3">
         <a href="./index.html" class="text-nowrap logo-img">
-          <img src="{{ asset('SEOdash/src/assets/images/logos/SiRebon.png')}}" alt="" />
+          <img src="{{ asset('SEOdash/src/assets/images/logos/SIREPAL.png')}}" alt="" />
         </a>
         <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
           <i class="ti ti-x fs-8"></i>
@@ -12,6 +12,24 @@
       <!-- Sidebar navigation-->
       <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
         <ul id="sidebarnav">
+          @if (auth()->user()->level == "superadmin")
+          <li class="sidebar-item mt-3">
+            <a class="sidebar-link" href="{{ route('kelola-user.index') }}" aria-expanded="false">
+              <span>
+                <iconify-icon icon="solar:home-smile-bold-duotone" class="fs-6"></iconify-icon>
+              </span>
+              <span class="hide-menu">Data User</span>
+            </a>
+          </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link" onclick="confirmLogout();">
+                <span>
+                    <iconify-icon icon="tabler:logout" class="fs-6"></iconify-icon>
+                </span>
+                <span class="hide-menu">Logout</span>
+            </a>
+        </li>     
+        @endif
         @if (auth()->user()->level == "admin")
           <li class="sidebar-item mt-3">
             <a class="sidebar-link" href="{{ route('home')}}" aria-expanded="false">
@@ -70,13 +88,13 @@
             </a>
             <ul aria-expanded="false" class="collapse first-level">
               <li class="sidebar-item">
-                <a href="./retribusi.html" class="sidebar-link">
+                <a href="{{ route('laporan.index')}}" class="sidebar-link">
                     <span><iconify-icon icon="tabler:arrow-big-right-filled"></iconify-icon></span>
                   <span class="hide-menu">Retribusi</span>
                 </a>
               </li>
               <li class="sidebar-item">
-                <a href="./belum-bayar-retribusi.html" class="sidebar-link">
+                <a href="{{ route('laporan.index')}}" class="sidebar-link">
                     <span><iconify-icon icon="tabler:arrow-big-right-filled"></iconify-icon></span>
                   <span class="hide-menu">Belum Membayar Retribusi</span>
                 </a>
@@ -110,7 +128,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('wajib-retribusi.index') }}" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('kapalku.index') }}" aria-expanded="false">
               <span>
                 <iconify-icon icon="tabler:anchor" class="fs-6"></iconify-icon>
               </span>
@@ -134,7 +152,7 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-typography.html" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('laporan.index')}}" aria-expanded="false">
               <span>
                 <iconify-icon icon="tabler:report-analytics" class="fs-6"></iconify-icon>
               </span>

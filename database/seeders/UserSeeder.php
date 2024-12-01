@@ -16,12 +16,23 @@ class UserSeeder extends Seeder
     \App\Models\User::query()->delete();
 
     User::create([
+        'id' => 1,
+        'name' => 'Superadmin',
+        'username' => 'superadmin',
+        'level' => 'superadmin',
+        'email' => 'superadmin@example.com',
+        'password' => bcrypt('superadmin123'),
+        'id_user_group' => 1,
+        'remember_token' => Str::random(60),
+    ]);
+
+    User::create([
         'name' => 'Admin Aplikasi',
         'username' => 'admin_',
         'level' => 'admin',
         'email' => 'admin@gmail.com',
         'password' => bcrypt('admin123'),
-        'id_user_group' => 1,
+        'id_user_group' => 2,
         'remember_token' => Str::random(60),
     ]);
     
@@ -31,7 +42,7 @@ class UserSeeder extends Seeder
         'level' => 'retribusi',
         'email' => 'user@gmail.com',
         'password' => bcrypt('user123'),
-        'id_user_group' => 2,
+        'id_user_group' => 3,
         'remember_token' => Str::random(60),
     ]);
     User::create([
@@ -40,7 +51,7 @@ class UserSeeder extends Seeder
         'level' => 'retribusi',
         'email' => 'user2@gmail.com',
         'password' => bcrypt('user123'),
-        'id_user_group' => 2,
+        'id_user_group' => 3,
         'remember_token' => Str::random(60),
     ]);
 }

@@ -4,15 +4,21 @@ namespace App\Http\Controllers\Retribusi;
 
 use App\Http\Controllers\Controller;
 use App\Models\WajibRetribusi;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProfilController extends Controller
 {
     public function index(){
-        $wajibRetribusi = WajibRetribusi::where('id_user', auth()->user()->id)->get();
+        $user = Session::get('session_user');
+        
+        if (!$user) {
+            return redirect()->route('login')->withErrors(['error' => 'Session berakhir, silakan login ulang.']);
+        }
 
-        return view('Wajib-Retribusi.profil');
+        $wajibRetribusi = WajibRetribusi::where('id_user', $user->id)->first();
+        return view('Wajib-Retribusi.profil', compact('wajibRetribusi'));
     } 
 
     public function update(Request $request) {
@@ -46,3 +52,4 @@ class ProfilController extends Controller
     }
     
 }
+$user = Session::get('session_user');

@@ -16,7 +16,7 @@ class WajibRetribusiSeeder extends Seeder
         DB::table('wajib_retribusi')->insert([
             [
                 'id' => 1,
-                'id_user' => 2,
+                'id_user' => 3,
                 'nama' => 'FAizi Rahman Syawli',
                 'no_hp' => '081234567890',
                 'nik' => '3201010101010101',
@@ -28,7 +28,7 @@ class WajibRetribusiSeeder extends Seeder
             ],
             [
                 'id' => 2,
-                'id_user' => 3,
+                'id_user' => 4,
                 'nama' => 'Fauzi Alfarisi',
                 'no_hp' => '089876543210',
                 'nik' => '3202020202020202',

@@ -53,7 +53,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Edit Kapal Wajib Retribusi</h5>
                             <hr>
-                            <form action="{{ route('kapal.update', $kapal->id) }}" method="POST">
+                            <form action="{{ route('kapalku.update', $kapal->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <div class="row mb-3">

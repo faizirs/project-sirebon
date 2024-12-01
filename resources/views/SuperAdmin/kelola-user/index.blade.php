@@ -25,45 +25,44 @@
                     <div class="col">
                         <div class="card">
                             <div class="card-body">
-                                <h5 class="card-title">Wajib Retribusi</h5>
+                                <h5 class="card-title">Kelola User</h5>
                                 <hr>
+                                @if (auth()->user()->level == 'superadmin')
                                     <div class="d-flex justify-content-between mb-2">
-                                        <a href="{{ route('wajib-retribusi.create') }}" class="btn btn-primary">Tambah
-                                            Data</a>
+                                        <a href="{{ route('kelola-user.create') }}"
+                                            class="btn btn-primary">Tambah User</a>
                                         <input type="text" id="searchInput" class="form-control w-25"
                                             placeholder="Cari...">
                                     </div>
+                                @endif
                                 <div class="table-responsive table-bordered">
                                     <table class="table text-nowrap align-middle mb-0 table-striped" id="dataTable">
                                         <thead>
                                             <tr class="border-2 border-bottom border-primary border-0">
                                                 <th scope="col" class="text-center">No.</th>
-                                                <th scope="col" class="text-center">Nama Lengkap</th>
-                                                <th scope="col" class="text-center">Telepon</th>
-                                                <th scope="col" class="text-center">NIK</th>
-                                                <th scope="col" class="text-center">Alamat</th>
-                                                <th scope="col" class="text-center">Kelurahan</th>
-                                                @if (auth()->user()->level == 'admin')
+                                                <th scope="col" class="text-center">Nama</th>
+                                                <th scope="col" class="text-center">Username</th>
+                                                <th scope="col" class="text-center">Email</th>
+                                                <th scope="col" class="text-center">Level</th>
+                                                @if (auth()->user()->level == 'superadmin')
                                                     <th scope="col" class="text-center">Aksi</th>
                                                 @endif
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
-                                          @foreach ($wajibretribusi as $index => $data)
-                                            <tr>
+                                            @foreach ($users as $index => $user)
+                                                <tr>
                                                     <td scope="col" class="text-center">{{ $index + 1 }}.</td>
-                                                    <td scope="col" class="text-center">{{ $data->nama }}</td>
-                                                    <td scope="col" class="text-center">{{ $data->no_hp }}</td>
-                                                    <td scope="col" class="text-center">{{ $data->nik }}</td>
-                                                    <td scope="col" class="text-center">{{ $data->alamat }}</td>
-                                                    <td scope="col" class="text-center">
-                                                        {{ $data->kelurahan->nama_kelurahan }}</td>
-                                                    @if (auth()->user()->level == 'admin')
+                                                    <td scope="col" class="text-center">{{ $user->name }}</td>
+                                                    <td scope="col" class="text-center">{{ $user->username }}</td>
+                                                    <td scope="col" class="text-center">{{ $user->email }}</td>
+                                                    <td scope="col" class="text-center">{{ $user->level }}</td>
+                                                    @if (auth()->user()->level == 'superadmin')
                                                         <td scope="col" class="text-center">
-                                                            <a href="{{ route('wajib-retribusi.edit', $data->id) }}"
+                                                            <a href="{{ route('kelola-user.edit', $user->id) }}"
                                                                 class="btn btn-primary btn-sm m-1"><iconify-icon icon="tabler:edit" width="1.2em" height="1.2em"></iconify-icon></a>
-
-                                                            <form action="{{ route('wajib-retribusi.destroy', $data->id) }}"
+                                                            <form
+                                                                action="{{ route('kelola-user.destroy', $user->id) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('DELETE')
@@ -72,11 +71,13 @@
                                                             </form>
                                                         </td>
                                                     @endif
-                                                  </tr>
-                                                  @endforeach
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
+
+
                             </div>
                         </div>
 
@@ -87,17 +88,17 @@
             </div>
         </div>
         @include('Template.script')
-        @if(session('success'))
-    <script>
-        Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "{{ session('success') }}",
-            showConfirmButton: false,
-            timer: 1500
-        });
-    </script>
-@endif
+        @if (session('success'))
+            <script>
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "{{ session('success') }}",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            </script>
+        @endif
 
 </body>
 

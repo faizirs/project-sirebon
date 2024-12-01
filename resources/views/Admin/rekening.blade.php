@@ -53,14 +53,14 @@
                                                     <td scope="col" class="text-center">{{ $data->no_rekening }}</td>
                                                     <td scope="col" class="text-center">
                                                         <a href="{{ route('rekening.edit', $data->id) }}"
-                                                            class="btn btn-primary btn-sm m-1">Ubah</a>
+                                                            class="btn btn-primary btn-sm m-1"><iconify-icon icon="tabler:edit" width="1.2em" height="1.2em"></iconify-icon></a>
 
                                                         <form action="{{ route('rekening.destroy', $data->id) }}"
                                                             method="POST" style="display:inline;">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-danger btn-sm m-1"
-                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                                                onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')"><iconify-icon icon="mi:delete" width="1.2em" height="1.2em"></iconify-icon></button>
                                                         </form>
                                                     </td>
                                                 </tr>

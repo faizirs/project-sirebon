@@ -87,7 +87,6 @@ class RekeningController extends Controller
      */
     public function destroy(string $id)
     {
-
         $rekening = MsRekening::findOrFail($id);
         $rekening->delete();
         return redirect()->route('rekening.index')->with('success', 'Data rekening berhasil dihapus');

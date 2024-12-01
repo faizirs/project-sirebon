@@ -7,11 +7,13 @@ use App\Http\Controllers\Admin\RekeningController;
 use App\Http\Controllers\Admin\KategoriRetribusiController;
 use App\Http\Controllers\Admin\WajibRetribusiController;
 use App\Http\Controllers\Admin\KapalController;
+use App\Http\Controllers\Retribusi\KapalkuController;
 use App\Http\Controllers\Admin\PembayaranController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\Retribusi\KonfirmasiPembayaranController;
 use App\Http\Controllers\Retribusi\RetribusiController;
 use App\Http\Controllers\Retribusi\ProfilController;
-
+use App\Http\Controllers\SuperAdmin\SuperadminController;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
@@ -51,6 +53,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin']], function () {
 
 Route::group(['middleware' => ['auth','ceklevel:retribusi']], function () {
     Route::resource('profil', ProfilController::class);
+    Route::resource('kapalku', KapalkuController::class);
     
 
 });
@@ -67,6 +70,13 @@ Route::group(['middleware' => ['auth','ceklevel:admin,retribusi']], function () 
 
 });
 
+Route::middleware(['auth', 'ceklevel:superadmin'])->group(function () {
+    Route::resource('kelola-user', SuperadminController::class);
+});
+
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
+Route::get('/laporan/export/pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export.pdf');
+Route::get('/laporan/export/docx', [LaporanController::class, 'exportDocx'])->name('laporan.export.docx');
 
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
