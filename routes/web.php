@@ -66,6 +66,9 @@ Route::group(['middleware' => ['auth','ceklevel:admin,retribusi']], function () 
     Route::resource('wajib-retribusi', WajibRetribusiController::class);
     Route::resource('konfirmasi-pembayaran', KonfirmasiPembayaranController::class);
     Route::resource('pembayaran', PembayaranController::class);
+    Route::post('/pembayaran/{id}/sesuai', [PembayaranController::class, 'setuju'])->name('pembayaran.sesuai');
+    Route::post('/pembayaran/{id}/tidak-sesuai', [PembayaranController::class, 'tidakSetuju'])->name('pembayaran.tidak-sesuai');
+
     Route::get('/kapal', [KapalController::class,'index'])->name('kapal.index');
 
 });

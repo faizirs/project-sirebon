@@ -53,11 +53,11 @@
                                                         <td scope="col" class="text-center">{{ $data->jenisKapal->jenis_kapal ?? 'N/A' }}</td>
                                                         <td scope="col" class="text-center">{{ $data->ukuran }}</td>
                                                         <td scope="col" class="text-center">
-                                                            <a href="{{ route('kapal.edit', $data->id) }}"
+                                                            <a href="{{ route('kapalku.edit', $data->id) }}"
                                                                 class="btn btn-primary btn-sm m-1"><iconify-icon icon="tabler:edit" width="1.2em" height="1.2em"></iconify-icon></a>
     
                                                             <form
-                                                                action="{{ route('kapal.destroy', $data->id) }}"
+                                                                action="{{ route('kapalku.destroy', $data->id) }}"
                                                                 method="POST" style="display:inline;">
                                                                 @csrf
                                                                 @method('DELETE')

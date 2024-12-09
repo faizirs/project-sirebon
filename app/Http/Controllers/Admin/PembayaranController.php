@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\MsRekening;
 use App\Models\Pembayaran;
+use App\Models\RefBank;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PembayaranController extends Controller
 {
@@ -23,7 +25,9 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        //
+        $banks = RefBank::all();
+
+        return view('Admin.Pembayaran.create', compact('banks',));
     }
 
     /**
@@ -45,6 +49,7 @@ class PembayaranController extends Controller
     
         // Simpan data ke database
         Pembayaran::create([
+            'id_user' => auth()->id(),
             'id_ref_bank' => $request->id_ref_bank,
             'no_rekening' => $request->no_rekening,
             'nama_pemilik_rekening' => $request->nama_pemilik_rekening,
@@ -57,9 +62,35 @@ class PembayaranController extends Controller
             'nama_akun' => $request->nama_pemilik_rekening
         ]);
         
+        if (auth()->user()->level == 'retribusi') {
+            return redirect()->route('konfirmasi-pembayaran.index')->with('success', 'Data pembayaran berhasil disimpan');
+        }
     
-        return redirect()->route('konfirmasi-pembayaran.index')->with('success', 'Data pembayaran berhasil disimpan');
+        return redirect()->route('pembayaran.index')->with('success', 'Data pembayaran berhasil disimpan');
     }
+
+    public function setuju($id)
+{
+    $pembayaran = Pembayaran::findOrFail($id);
+    $pembayaran->status = 'Y'; // Set status menjadi Sesuai
+    $pembayaran->tanggal_tindak_lanjut = now(); // Simpan tanggal tindak lanjut
+    $pembayaran->tindak_lanjut_user = auth()->user()->name; // Simpan nama admin yang menindaklanjuti
+    $pembayaran->save();
+
+    return redirect()->back()->with('success', 'Pembayaran telah disetujui.');
+}
+
+public function tidakSetuju($id)
+{
+    $pembayaran = Pembayaran::findOrFail($id);
+    $pembayaran->status = 'N'; // Set status menjadi Tidak Sesuai
+    $pembayaran->tanggal_tindak_lanjut = now(); // Simpan tanggal tindak lanjut
+    $pembayaran->tindak_lanjut_user = auth()->user()->name; // Simpan nama admin yang menindaklanjuti
+    $pembayaran->save();
+
+    return redirect()->back()->with('success', 'Pembayaran telah ditolak.');
+}
+
 
     /**
      * Display the specified resource.

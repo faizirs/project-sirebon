@@ -14,7 +14,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" onclick="window.history.back();">
+                        <a class="nav-link" href="{{ url()->previous() }}">
                             <iconify-icon icon="tabler:arrow-back-up" class="fs-4"></iconify-icon>
                             <span class="nav-link me-2 fs-4">Kembali</span>
                         </a>
@@ -59,13 +59,10 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label" for="id_user">Pemilik Kapal</label>
                                     <div class="col-sm-9">
-                                        <select name="id_wajib_retribusi" id="id_wajib_retribusi" class="form-select">
-                                            @foreach ($pemilikKapal as $pemilik)
-                                                <option value="{{ $pemilik->id }}">{{ $pemilik->nama }}</option>
-                                            @endforeach
-                                        </select>                                        
+                                        <input type="text" id="nama_pemilik" name="nama_pemilik" class="form-control"
+                                            value="{{ $pemilik->nama ?? 'N/A' }}" readonly>
                                     </div>
-                                </div>                                
+                                </div>
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Nama Kapal</label>
                                     <div class="col-sm-9">

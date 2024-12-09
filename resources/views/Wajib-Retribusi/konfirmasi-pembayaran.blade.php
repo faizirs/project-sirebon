@@ -68,7 +68,7 @@
                                         <label class="col-sm-3 col-form-label">Nominal Transfer</label>
                                         <div class="col-sm-9">
                                             <input type="number" name="biaya_retribusi" class="form-control"
-                                                value="{{ $biayaRetribusi }}" readonly>
+                                            required>
                                         </div>
                                     </div>
                                     <div class="row mb-3">

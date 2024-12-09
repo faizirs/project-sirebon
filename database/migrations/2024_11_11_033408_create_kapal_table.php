@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_wajib_retribusi');
             $table->string('nama_pemilik', 100);
             $table->string('nama_kapal', 50);
+            $table->date('tanggal_pembayaran')->default(now()->addMonth());
             $table->unsignedBigInteger('id_jenis_kapal');
             $table->string('ukuran', 50);
             $table->timestamps();

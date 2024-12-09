@@ -93,7 +93,7 @@
                                                         <td scope="col" class="text-center">{{ $index + 1 }}.</td>
                                                         <td scope="col" class="text-center">{{ $data->nama_kapal }}</td>
                                                         <td scope="col" class="text-center">{{ $data->jenisKapal->biaya_retribusi ?? 'N/A' }}</td>
-                                                        <td scope="col" class="text-center">{{ $data->ukuran }}</td>
+                                                        <td scope="col" class="text-center">Sebelum {{ date('d-m-Y', strtotime($data->tanggal_pembayaran)) }}</td>
                                                     </tr>
                                                 @endforeach
                                             </tbody>

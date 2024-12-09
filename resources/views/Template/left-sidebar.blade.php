@@ -80,27 +80,13 @@
             </a>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link has-arrow" href="javascript:void(0)" aria-expanded="false">
+            <a class="sidebar-link" href="{{ route('laporan.index')}}" aria-expanded="false">
               <span>
                 <iconify-icon icon="tabler:report-analytics" class="fs-6"></iconify-icon>
               </span>
               <span class="hide-menu">Laporan</span>
             </a>
-            <ul aria-expanded="false" class="collapse first-level">
-              <li class="sidebar-item">
-                <a href="{{ route('laporan.index')}}" class="sidebar-link">
-                    <span><iconify-icon icon="tabler:arrow-big-right-filled"></iconify-icon></span>
-                  <span class="hide-menu">Retribusi</span>
-                </a>
-              </li>
-              <li class="sidebar-item">
-                <a href="{{ route('laporan.index')}}" class="sidebar-link">
-                    <span><iconify-icon icon="tabler:arrow-big-right-filled"></iconify-icon></span>
-                  <span class="hide-menu">Belum Membayar Retribusi</span>
-                </a>
-              </li>
-            </ul>
-          </li>    
+          </li>
           <li class="sidebar-item">
             <a class="sidebar-link" onclick="confirmLogout();">
                 <span>

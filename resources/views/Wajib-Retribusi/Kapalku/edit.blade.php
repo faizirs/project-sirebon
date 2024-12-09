@@ -13,11 +13,11 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" onclick="window.history.back();">
+                        <a class="nav-link" href="{{ url()->previous() }}">
                             <iconify-icon icon="tabler:arrow-back-up" class="fs-4"></iconify-icon>
                             <span class="nav-link me-2 fs-4">Kembali</span>
                         </a>
-                    </li>
+                    </li>     
                 </ul>
                 <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                     <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
@@ -57,18 +57,12 @@
                                 @csrf
                                 @method('PUT')
                                 <div class="row mb-3">
-                                    <label class="col-sm-3 col-form-label" for="id_wajib_retribusi">Pemilik Kapal</label>
+                                    <label class="col-sm-3 col-form-label" for="nama_pemilik">Pemilik Kapal</label>
                                     <div class="col-sm-9">
-                                        <select name="id_wajib_retribusi" id="id_wajib_retribusi" class="form-select">
-                                            @foreach($pemilikKapal as $pemilik)
-                                                <option value="{{ $pemilik->id }}" {{ $kapal->id_wajib_retribusi == $pemilik->id ? 'selected' : '' }}>
-                                                    {{ $pemilik->nama }}
-                                                </option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" id="nama_pemilik" class="form-control" 
+                                            value="{{ $kapal->wajibRetribusi->nama ?? 'N/A' }}" readonly>
                                     </div>
-                                </div>
-                                
+                                </div>                                
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Nama Kapal</label>
                                     <div class="col-sm-9">

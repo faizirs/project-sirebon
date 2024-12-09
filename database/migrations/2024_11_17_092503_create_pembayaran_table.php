@@ -14,13 +14,17 @@ return new class extends Migration
         Schema::create('pembayaran', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_ref_bank');
+            $table->unsignedBigInteger('id_user');
             $table->string('no_rekening')->unique();
             $table->string('nama_pemilik_rekening');
             $table->decimal('biaya_retribusi', 15, 2);
             $table->string('file_bukti');
+            $table->char('status', 1)->default('P');
             $table->date('tanggal_tindak_lanjut')->nullable();
             $table->string('tindak_lanjut_user')->nullable();
             $table->timestamps();
+
+            $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
         });
         
     }

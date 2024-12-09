@@ -16,7 +16,7 @@
                             <iconify-icon icon="tabler:arrow-back-up" class="fs-4"></iconify-icon>
                             <span class="nav-link me-2 fs-4">Kembali</span>
                         </a>
-                    </li>                    
+                    </li>     
                 </ul>
                 <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
                     <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
@@ -47,15 +47,16 @@
                 <div class="col">
                     <div class="card profile-card">
                         <div class="card-body">
-                            <h5 class="card-title">Tambah User</h5>
+                            <h5 class="card-title">Edit User</h5>
                             <hr>
-                            <form action="{{ route('kelola-user.store') }}" method="POST">
+                            <form action="{{ route('kelola-user.update', $user->id) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <!-- Input Nama -->
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Nama</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="name" class="form-control" required>
+                                        <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
                                     </div>
                                 </div>
 
@@ -63,7 +64,7 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Username</label>
                                     <div class="col-sm-9">
-                                        <input type="text" name="username" class="form-control" required>
+                                        <input type="text" name="username" class="form-control" value="{{ $user->username }}" required>
                                     </div>
                                 </div>
 
@@ -71,15 +72,7 @@
                                 <div class="row mb-3">
                                     <label class="col-sm-3 col-form-label">Email</label>
                                     <div class="col-sm-9">
-                                        <input type="email" name="email" class="form-control" required>
-                                    </div>
-                                </div>
-
-                                <!-- Input Password -->
-                                <div class="row mb-3">
-                                    <label class="col-sm-3 col-form-label">Password</label>
-                                    <div class="col-sm-9">
-                                        <input type="password" name="password" class="form-control" required>
+                                        <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
                                     </div>
                                 </div>
 
@@ -88,50 +81,47 @@
                                     <label class="col-sm-3 col-form-label">Level</label>
                                     <div class="col-sm-9">
                                         <select class="form-select" id="level" name="level" onchange="handleLevelChange()" required>
-                                            <option value="">Pilih Level</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="retribusi">Wajib Retribusi</option>
+                                            <option value="admin" {{ $user->level == 'admin' ? 'selected' : '' }}>Admin</option>
+                                            <option value="retribusi" {{ $user->level == 'retribusi' ? 'selected' : '' }}>Wajib Retribusi</option>
                                         </select>
-                                        
-                                        
                                     </div>
                                 </div>
+
                                 <!-- Hidden Input for ID User Group -->
-                                <input type="hidden" id="id_user_group" name="id_user_group" value="">
-                                
+                                <input type="hidden" id="id_user_group" name="id_user_group" value="{{ $user->id_user_group }}">
 
                                 <!-- Input Tambahan untuk Wajib Retribusi -->
-                                <div id="retribusi-inputs" style="display: none;">
+                                <div id="retribusi-inputs" style="display: {{ $user->level == 'retribusi' ? 'block' : 'none' }};">
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label">Nama Lengkap</label>
+                                        <label class="col-sm-3 col-form-label">Nama</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="nama" class="form-control">
+                                            <input type="text" name="nama" class="form-control" value="{{ $user->wajibRetribusi->nama ?? '' }}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">No HP</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="no_hp" class="form-control">
+                                            <input type="text" name="no_hp" class="form-control" value="{{ $user->wajibRetribusi->no_hp ?? '' }}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">NIK</label>
                                         <div class="col-sm-9">
-                                            <input type="text" name="nik" class="form-control">
+                                            <input type="text" name="nik" class="form-control" value="{{ $user->wajibRetribusi->nik ?? '' }}">
                                         </div>
                                     </div>
                                     <div class="row mb-3">
                                         <label class="col-sm-3 col-form-label">Alamat</label>
                                         <div class="col-sm-9">
-                                            <textarea name="alamat" class="form-control"></textarea>
+                                            <textarea name="alamat" class="form-control">{{ $user->wajibRetribusi->alamat ?? '' }}</textarea>
                                         </div>
                                     </div>
                                     <div class="row mb-3">
-                                        <label class="col-sm-3 col-form-label" for="id_kelurahan">Kelurahan</label>
+                                        <label class="col-sm-3 col-form-label">Kelurahan</label>
                                         <div class="col-sm-9">
                                             <select name="id_kelurahan" id="id_kelurahan" class="form-select">
                                                 @foreach ($kelurahan as $data)
-                                                    <option value="{{ $data->id }}">{{ $data->nama_kelurahan }}</option>
+                                                    <option value="{{ $data->id }}" {{ $data->id == ($user->wajibRetribusi->id_kelurahan ?? '') ? 'selected' : '' }}>{{ $data->nama_kelurahan }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -140,8 +130,8 @@
                                         <label class="col-sm-3 col-form-label">Status</label>
                                         <div class="col-sm-9">
                                             <select class="form-select" name="status">
-                                                <option value="A">Aktif</option>
-                                                <option value="I">Non-Aktif</option>
+                                                <option value="A" {{ ($user->wajibRetribusi->status ?? '') == 'A' ? 'selected' : '' }}>Aktif</option>
+                                                <option value="I" {{ ($user->wajibRetribusi->status ?? '') == 'I' ? 'selected' : '' }}>Non-Aktif</option>
                                             </select>
                                         </div>
                                     </div>
@@ -164,8 +154,7 @@
             const level = document.getElementById('level').value;
             const retribusiInputs = document.getElementById('retribusi-inputs');
             const userGroupInput = document.getElementById('id_user_group');
-    
-            // Atur visibilitas input tambahan
+
             if (level === 'admin') {
                 retribusiInputs.style.display = 'none';
                 userGroupInput.value = 1; // ID group untuk admin
@@ -178,7 +167,6 @@
             }
         }
     </script>
-    
 </body>
 
 </html>
