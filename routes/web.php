@@ -68,7 +68,7 @@ Route::group(['middleware' => ['auth','ceklevel:admin,retribusi']], function () 
     Route::resource('pembayaran', PembayaranController::class);
     Route::post('/pembayaran/{id}/sesuai', [PembayaranController::class, 'setuju'])->name('pembayaran.sesuai');
     Route::post('/pembayaran/{id}/tidak-sesuai', [PembayaranController::class, 'tidakSetuju'])->name('pembayaran.tidak-sesuai');
-
+    Route::get('/laporan/export/pdf', [LaporanController::class, 'exportPdf'])->name('laporan.export.pdf');
     Route::get('/kapal', [KapalController::class,'index'])->name('kapal.index');
 
 });

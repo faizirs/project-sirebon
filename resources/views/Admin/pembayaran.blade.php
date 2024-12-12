@@ -40,10 +40,12 @@
                                                 <th scope="col" class="text-center">No.</th>
                                                 <th scope="col" class="text-center">Nama Lengkap</th>
                                                 <th scope="col" class="text-center">Rekening</th>
+                                                <th scope="col" class="text-center">Biaya Retribusi</th>
                                                 <th scope="col" class="text-center">Bukti</th>
                                                 <th scope="col" class="text-center">Tanggal Bayar</th>
                                                 <th scope="col" class="text-center">Tanggal Tindak Lanjut</th>
                                                 <th scope="col" class="text-center">Tindak Lanjut User</th>
+                                                <th scope="col" class="text-center">Keterangan</th>
                                                 <th scope="col" class="text-center">Aksi</th>
                                             </tr>
                                         </thead>
@@ -53,6 +55,7 @@
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td class="text-center">{{ $data->nama_pemilik_rekening }}</td>
                                                     <td class="text-center">{{ $data->no_rekening }}</td>
+                                                    <td class="text-center">Rp {{ number_format($data->biaya_retribusi, 2, ',', '.') }}</td>
                                                     <td class="text-center">
                                                         <img src="{{ asset('bukti_pembayaran/' . $data->file_bukti) }}"
                                                             alt="{{ $data->title }}" class="rounded"
@@ -62,7 +65,15 @@
                                                     </td>
                                                     <td class="text-center">{{ $data->tanggal_tindak_lanjut ? $data->tanggal_tindak_lanjut->format('d-m-Y') : 'Belum Ditindak' }}</td>
                                                     <td class="text-center">{{ $data->tindak_lanjut_user ?? 'Belum Ada' }}</td>
-                                                    
+                                                    <td class="text-center">
+                                                        @if ($data->status == 'Y')
+                                                            <span class="badge bg-dark">Sesuai</span>
+                                                        @elseif ($data->status == 'N')
+                                                            <span class="badge bg-dark">Tidak Sesuai</span>
+                                                        @else
+                                                            <span class="badge bg-warning">Belum Diverifikasi</span>
+                                                        @endif
+                                                    </td>
                                                         <td class="text-center">
                                                           <form action="{{ route('pembayaran.sesuai', $data->id) }}" method="POST" class="d-inline">
                                                               @csrf

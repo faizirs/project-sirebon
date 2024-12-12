@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>SiRebon</title>
+	<title>SIREPAL</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">	
     <link rel="shortcut icon" type="image/png" href="{{ asset('SEOdash/src/assets/images/logos/logo-sirebon-1.png') }}" />

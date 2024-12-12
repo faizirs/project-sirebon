@@ -17,7 +17,7 @@ class WajibRetribusiSeeder extends Seeder
             [
                 'id' => 1,
                 'id_user' => 3,
-                'nama' => 'FAizi Rahman Syawli',
+                'nama' => 'Faizi Rahman Syawli',
                 'no_hp' => '081234567890',
                 'nik' => '3201010101010101',
                 'alamat' => 'Jalan Ledeng No. 123',

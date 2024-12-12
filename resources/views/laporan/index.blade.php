@@ -30,7 +30,7 @@
                                     <input type="text" id="searchInput" class="form-control w-25"
                                         placeholder="Cari...">
                                     <!-- Tombol Cetak -->
-                                    <button onclick="printReport()" class="btn btn-success">Cetak Laporan</button>
+                                    <a href="{{ route('laporan.export.pdf') }}" class="btn btn-success">Cetak Laporan PDF</a>
                                 </div>
                                 <div class="table-responsive table-bordered">
                                     <table class="table text-nowrap align-middle mb-0 table-striped" id="dataTable">
